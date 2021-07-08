@@ -1,22 +1,31 @@
 <template>
   <div class="container">
-    ciao
+    <div class="row row-cols-5">
+      <div v-for="(card,i) in apiElements" :key="i" class="g-4">
+        <CardDisk :cardInfo="card"/>
+      </div>
+    </div>
   </div>
 </template>
 
 
 <script>
 import axios from 'axios';
+import CardDisk from '@/components/CardDisk.vue';
 
 export default {
   name : 'Main',
   components: {
+    CardDisk,
   },
   data(){
     return{
       urlApi : 'https://flynn.boolean.careers/exercises/api/array/music',
       apiElements : []
     }
+  },
+  created(){
+    this.loadApi();
   },
   methods: {
     loadApi(){
@@ -28,9 +37,6 @@ export default {
           console.log(this.apiElements);
         });
     }
-  },
-  mounted(){
-    this.loadApi();
   }
 }
 </script>
@@ -38,6 +44,6 @@ export default {
 
 <style lang="scss">
   .container{
-    width: 80%;
+    color: white;
   }
 </style>
