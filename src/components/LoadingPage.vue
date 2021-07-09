@@ -1,7 +1,7 @@
 <template>
   <div class="loading text-center position-absolute top-50 start-50 translate-middle">
     <img src="../assets/img/logo.png" alt="logo spotify">
-    <div class="mt-3 text-uppercase fs-1 fw-bolder">...Loading...</div>
+    <div class="mt-3 text-uppercase fs-1 fw-bolder text-white">...Loading...</div>
   </div>
 </template>
 

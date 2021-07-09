@@ -1,6 +1,13 @@
 <template>
-  <header>
+  <header class="d-flex justify-content-between align-items-center">
     <img src="../assets/img/logo.png" alt="logo spotify">
+
+    <div class="cont-sel">
+      <select class="p-1" name="genre" id="genre">
+        <option value="">Seleziona genere</option>
+        <option value="pop">Pop</option>
+      </select>
+    </div>
   </header>
 </template>
 
