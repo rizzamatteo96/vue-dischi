@@ -1,6 +1,6 @@
 <template>
-  <div class="cardDisk text-center p-3">
-    <img class="w-100" :src="cardInfo.poster" alt="">
+  <div  class="cardDisk text-center p-3">
+    <img class="w-100" :src="cardInfo.poster" alt="#">
     <div class="text-uppercase fs-3 fw-bolder mb-3"> {{cardInfo.title}} </div>
     <div class="text-secondary"> {{cardInfo.author}} </div>
     <div class="text-secondary mb-3"> {{cardInfo.year}} </div>
@@ -10,7 +10,7 @@
 <script>
 export default {
   name : 'CardDisk',
-  props : ["cardInfo"]
+  props : ['cardInfo','genre']
 }
 </script>
 

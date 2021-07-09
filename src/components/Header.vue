@@ -3,9 +3,9 @@
     <img src="../assets/img/logo.png" alt="logo spotify">
 
     <div class="cont-sel">
-      <select class="p-1" name="genre" id="genre">
+      <select @change="setValueSrc($event)" class="p-1" name="genre" id="genre">
         <option value="">Seleziona genere</option>
-        <option v-for="(genre,i) in genreSelection" :key="i" value="genre.toLowerCase()"> {{genre}} </option>
+        <option v-for="(genre,i) in genreSelection" :key="i" :value="genre"> {{genre}} </option>
       </select>
     </div>
   </header>
@@ -16,7 +16,11 @@
 export default {
   name : 'Header',
   props : ['genreSelection'],
-  components : {
+  methods : {
+    setValueSrc(event){
+      // console.log(event.target.value);
+      this.$emit('searchVal', event.target.value);
+    }
   }
 }
 </script>

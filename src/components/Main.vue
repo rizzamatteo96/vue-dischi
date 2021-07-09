@@ -6,9 +6,6 @@
       </div>
     </div>
 
-    <!--TODO <div v-else>
-      <LoadingPage/>
-    </div> -->
   </div>
 </template>
 
@@ -18,7 +15,7 @@ import CardDisk from '@/components/CardDisk.vue';
 
 export default {
   name : 'Main',
-  props : ['cardData'],
+  props : ['cardData', 'genreToShow'],
   components: {
     CardDisk
   }
