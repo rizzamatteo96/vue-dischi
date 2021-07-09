@@ -5,7 +5,7 @@
     <div class="cont-sel">
       <select class="p-1" name="genre" id="genre">
         <option value="">Seleziona genere</option>
-        <option value="pop">Pop</option>
+        <option v-for="(genre,i) in genreSelection" :key="i" value="genre.toLowerCase()"> {{genre}} </option>
       </select>
     </div>
   </header>
@@ -15,6 +15,7 @@
 <script>
 export default {
   name : 'Header',
+  props : ['genreSelection'],
   components : {
   }
 }

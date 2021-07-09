@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header/>
+    <Header :genreSelection="genreArray"/>
     <Main v-if="!dataLoading" :cardData="apiElements"/>
     <LoadingPage v-else/>
   </div>
@@ -23,6 +23,7 @@ export default {
     return{
       urlApi : 'https://flynn.boolean.careers/exercises/api/array/music',
       apiElements : [],
+      genreArray : [],
       dataLoading : true
     }
   },
@@ -38,7 +39,21 @@ export default {
           this.apiElements = response.data.response;
           // console.log(this.apiElements);
           this.dataLoading = false;
+          this.loadGenre();
+        })
+        .catch(err => {
+          console.log('Errore: ' + err);
         });
+    },
+    loadGenre(){
+      // funzione che estrapola tutti i generi musicali presenti nella api per la selezione
+      console.log('ciao');
+      this.apiElements.forEach((element) => {
+        if(!this.genreArray.includes(element.genre)){
+          this.genreArray.push(element.genre);
+        }
+      });
+      console.log(this.genreArray);
     }
   }
 }
