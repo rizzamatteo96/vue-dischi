@@ -57,16 +57,18 @@ export default {
       // console.log(this.genreArray);
     },
     filterGenre(inputFormHeader){
-      this.filteredArray = this.apiElements.filter((element) => {
-        if(!inputFormHeader){
-          return this.apiElements;
-        }
-        else{
+
+      if(!inputFormHeader){
+        this.filteredArray = this.apiElements;
+      }
+      else{
+        this.filteredArray = this.apiElements.filter((element) => {
           return element.genre.includes(inputFormHeader);
-        }
-      });
-      // console.log(inputFormHeader);
-      // console.log(this.filteredArray);
+        });
+      }
+
+      this.filteredArray.sort((a, b) => (a.year > b.year) ? 1 : -1);
+
     }
   }
 }
