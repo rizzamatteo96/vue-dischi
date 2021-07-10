@@ -1,6 +1,10 @@
 <template>
   <div id="app">
-    <Header :genreSelection="genreArray" @searchVal="filterGenre"/>
+    <Header 
+    :genreSelection="genreArray" 
+    @searchVal="filterGenre" 
+    @listOrder="changeOrder"
+    />
     <Main v-if="!dataLoading" :cardData="filteredArray"/>
     <LoadingPage v-else/>
   </div>
@@ -24,7 +28,9 @@ export default {
       urlApi : 'https://flynn.boolean.careers/exercises/api/array/music',
       apiElements : [],
       genreArray : [],
+      activeGenre : '',
       filteredArray : [],
+      orderList : 'crescente',
       dataLoading : true
     }
   },
@@ -58,17 +64,29 @@ export default {
     },
     filterGenre(inputFormHeader){
 
-      if(!inputFormHeader){
+      typeof(inputFormHeader) != "undefined" ? this.activeGenre = inputFormHeader : '';
+
+      if(this.activeGenre == ''){
         this.filteredArray = this.apiElements;
+        console.log('qua');
       }
       else{
         this.filteredArray = this.apiElements.filter((element) => {
-          return element.genre.includes(inputFormHeader);
+          return element.genre.includes(this.activeGenre);
         });
       }
 
-      this.filteredArray.sort((a, b) => (a.year > b.year) ? 1 : -1);
-
+      if(this.orderList == 'crescente'){
+        this.filteredArray.sort((a, b) => (a.year > b.year) ? 1 : -1);
+      }
+      else { 
+        this.filteredArray.sort((a, b) => (a.year < b.year) ? 1 : -1);
+      }
+    },
+    changeOrder(order){
+      console.log('cmabio');
+      order? this.orderList = 'decrescente' : this.orderList = 'crescente';
+      this.filterGenre();
     }
   }
 }
